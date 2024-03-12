@@ -70,6 +70,18 @@ class ContaBancaria{
         return this.nomeTitular
     }
 
+    fun atualizarSaldo(novoSaldo: Double) {
+        if (novoSaldo >= 0.0) {
+            saldo = novoSaldo // Aqui o set personalizado do saldo é chamado
+        } else {
+            println("Não é possível definir um saldo negativo.")
+        }
+    }
+
+    fun getSaldo(): Double {
+        return this.saldo
+        }
+
 
 }
 
@@ -94,6 +106,21 @@ fun main() {
 
     val circulo1 = Circulo(4.0)
     circulo1.calcularArea()
+
+
+        val conta = ContaBancaria()
+        conta.numeroConta = "12345678"
+        conta.nomeTitular = "joao" // Isso acionará o setter que ajusta a primeira letra para maiúscula
+
+        // Atualizar o saldo para um valor positivo
+        conta.atualizarSaldo(1000.0)
+
+        println("Saldo atual: ${conta.getSaldo()}") // Deve imprimir o saldo atualizado
+
+        // Tentativa de atualizar o saldo para um valor negativo
+        conta.atualizarSaldo(-500.0) // Isso deve imprimir uma mensagem de erro e não alterar o saldo
+        println("Saldo após tentativa de atualização negativa: ${conta.getSaldo()}") // Saldo deve permanecer inalterado
+    
 
 }
 
